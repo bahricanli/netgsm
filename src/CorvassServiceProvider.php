@@ -87,7 +87,7 @@ class CorvassServiceProvider extends ServiceProvider
             event(new Events\MessagesWereSent($shortMessages, $response));
         };
 
-        $this->app->singleton('corvass-sms', function ($app) use ($beforeSingle, $afterSingle, $beforeMany, $afterMany) {
+        $this->app->singleton('corvass', function ($app) use ($beforeSingle, $afterSingle, $beforeMany, $afterMany) {
             return new CorvassService(
                 $app->make(Clients\CorvassClientInterface::class),
                 new ShortMessageFactory(),
@@ -108,7 +108,7 @@ class CorvassServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'corvass-sms',
+            'corvass',
             Clients\CorvassClientInterface::class,
         ];
     }
