@@ -1,21 +1,21 @@
 {
-    "name": "bmericc/jet-sms",
-    "description": "Sends SMS using JetSms API",
-    "homepage": "https://github.com/laravel-notification-channels/jet-sms",
+    "name": "bmericc/corvass",
+    "description": "Sends SMS using Corvass API",
+    "homepage": "https://github.com/bahricanli/corvass",
     "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Hilmi Erdem KEREN",
-            "email": "erdemkeren@gmail.com",
+            "name": "Bahri Meriç Canlı",
+            "email": "bahri@bahri.info",
             "homepage": "http://www.erdemkeren.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.6.4",
-        "bmericc/jet-sms-php": "^1.0",
+        "bmericc/corvass-php": "^1.0",
         "illuminate/notifications": "^5.3",
         "illuminate/queue": "^5.1|^5.2|^5.3",
         "illuminate/support": "^5.1|^5.2|^5.3"
@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\JetSms\\": "src"
+            "NotificationChannels\\Corvass\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\JetSms\\Test\\": "tests"
+            "NotificationChannels\\Corvass\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -43,7 +43,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:bmericc/jet-sms-php.git"
+            "url": "git@github.com:bmericc/corvass-php.git"
         }
     ]
 }
