@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\JetSms\Exceptions;
+namespace NotificationChannels\Corvass\Exceptions;
 
 /**
  * Class CouldNotSendNotification.

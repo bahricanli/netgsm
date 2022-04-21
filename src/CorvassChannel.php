@@ -1,40 +1,40 @@
 <?php
 
-namespace NotificationChannels\JetSms;
+namespace NotificationChannels\Corvass;
 
-use BahriCanli\JetSms\ShortMessage;
+use BahriCanli\Corvass\ShortMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\JetSms\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Corvass\Exceptions\CouldNotSendNotification;
 
 /**
- * Class JetSmsChannel.
+ * Class CorvassChannel.
  */
-final class JetSmsChannel
+final class CorvassChannel
 {
     /**
      * Send the given notification.
      *
      * @param  mixed                                  $notifiable
      * @param  \Illuminate\Notifications\Notification $notification
-     * @throws \NotificationChannels\JetSms\Exceptions\CouldNotSendNotification
+     * @throws \NotificationChannels\Corvass\Exceptions\CouldNotSendNotification
      * @return void
      */
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->toJetSms($notifiable);
+        $message = $notification->toCorvass($notifiable);
 
         if ($message instanceof ShortMessage) {
-            JetSms::sendShortMessage($message);
+            Corvass::sendShortMessage($message);
 
             return;
         }
 
-        $to = $notifiable->routeNotificationFor('JetSms');
+        $to = $notifiable->routeNotificationFor('Corvass');
 
         if (empty($to)) {
             throw CouldNotSendNotification::missingRecipient();
         }
 
-        JetSms::sendShortMessage($to, $message);
+        Corvass::sendShortMessage($to, $message);
     }
 }
