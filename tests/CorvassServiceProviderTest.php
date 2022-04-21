@@ -1,13 +1,13 @@
 <?php
 
-namespace NotificationChannels\JetSms\Test;
+namespace NotificationChannels\Corvass\Test;
 
 use Mockery as M;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Container\ContextualBindingBuilder;
-use NotificationChannels\JetSms\JetSmsServiceProvider;
+use NotificationChannels\Corvass\CorvassServiceProvider;
 
-class JetSmsServiceProviderTest extends \PHPUnit_Framework_TestCase
+class CorvassServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
     private $app;
     private $contextualBindingBuilder;
@@ -36,7 +36,7 @@ class JetSmsServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->app->shouldReceive('singleton')
             ->once();
 
-        $provider = new JetSmsServiceProvider($this->app);
+        $provider = new CorvassServiceProvider($this->app);
 
         $provider->boot();
     }

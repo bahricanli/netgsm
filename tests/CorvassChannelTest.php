@@ -1,24 +1,24 @@
 <?php
 
-namespace NotificationChannels\JetSms\Test;
+namespace NotificationChannels\Corvass\Test;
 
 use Exception;
 use Mockery as M;
-use NotificationChannels\JetSms\JetSms;
+use NotificationChannels\Corvass\Corvass;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\JetSms\JetSmsChannel;
-use BahriCanli\JetSms\Http\Responses\JetSmsResponseInterface;
-use NotificationChannels\JetSms\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Corvass\CorvassChannel;
+use BahriCanli\Corvass\Http\Responses\CorvassResponseInterface;
+use NotificationChannels\Corvass\Exceptions\CouldNotSendNotification;
 
-class JetSmsChannelTest extends \PHPUnit_Framework_TestCase
+class CorvassChannelTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var JetSmsChannel
+     * @var CorvassChannel
      */
     private $channel;
 
     /**
-     * @var JetSmsResponseInterface
+     * @var CorvassResponseInterface
      */
     private $responseInterface;
 
@@ -26,8 +26,8 @@ class JetSmsChannelTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->channel = new JetSmsChannel();
-        $this->responseInterface = M::mock(JetSmsResponseInterface::class);
+        $this->channel = new CorvassChannel();
+        $this->responseInterface = M::mock(CorvassResponseInterface::class);
     }
 
     public function tearDown()
@@ -37,7 +37,7 @@ class JetSmsChannelTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_sends_notification()
     {
-        JetSms::shouldReceive('sendShortMessage')
+        Corvass::shouldReceive('sendShortMessage')
             ->once()
             ->with('+1234567890', 'foo')
             ->andReturn($this->responseInterface);
@@ -70,10 +70,10 @@ class TestNotification extends Notification
 {
     public function via($notifiable)
     {
-        return [JetSmsChannel::class];
+        return [CorvassChannel::class];
     }
 
-    public function toJetSms($notifiable)
+    public function toCorvass($notifiable)
     {
         return 'foo';
     }
