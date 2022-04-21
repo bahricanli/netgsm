@@ -49,7 +49,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:bmericc/corvass-php.git"
+            "url": "git@github.com:bahricanli/corvass-php.git"
         }
     ]
 }
