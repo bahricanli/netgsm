@@ -9,6 +9,12 @@
         {
             "name": "Bahri Meriç Canlı",
             "email": "bahri@bahri.info",
+            "homepage": "https://www.bahri.info",
+            "role": "Developer"
+        },
+        {
+            "name": "Hilmi Erdem KEREN",
+            "email": "erdemkeren@gmail.com",
             "homepage": "http://www.erdemkeren.com",
             "role": "Developer"
         }
