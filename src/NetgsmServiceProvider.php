@@ -49,13 +49,13 @@ class NetgsmServiceProvider extends ServiceProvider
 
             switch (config('services.netgsm.client', 'http')) {
                 case 'http':
-                    $timeout = config('services.Netgsm.timeout');
-                    $endpoint = config('services.Netgsm.http.endpoint');
+                    $timeout = config('services.netgsm.timeout');
+                    $endpoint = config('services.netgsm.http.endpoint');
                     $client = new Clients\NetgsmHttpClient(
                         new Client(['timeout' => $timeout]), $endpoint, $username, $password, $originator);
                     break;
                 case 'xml':
-                    $endpoint = config('services.Netgsm.xml.endpoint');
+                    $endpoint = config('services.netgsm.xml.endpoint');
                     $client = new Clients\NetgsmXmlClient($endpoint, $username, $password, $originator);
                     break;
                 default:

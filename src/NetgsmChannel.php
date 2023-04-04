@@ -29,7 +29,7 @@ final class NetgsmChannel
             return;
         }
 
-        $to = $notifiable->routeNotificationFor('netgsm');
+        $to = $notifiable->routeNotificationFor('Netgsm');
 
         if (empty($to)) {
             throw CouldNotSendNotification::missingRecipient();
