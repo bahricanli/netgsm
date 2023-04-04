@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": ">=7",
-        "bahricanli/netgsm-php": "^1.0.1",
+        "bahricanli/netgsm-php": "^1.0",
         "illuminate/notifications": "8.*",
         "illuminate/queue": "8.*",
         "illuminate/support": "8.*"
