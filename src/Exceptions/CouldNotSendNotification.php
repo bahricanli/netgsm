@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\netgsm\Exceptions;
+namespace NotificationChannels\Netgsm\Exceptions;
 
 /**
  * Class CouldNotSendNotification.

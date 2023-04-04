@@ -1,9 +1,9 @@
 <?php
 
-namespace NotificationChannels\netgsm\Events;
+namespace NotificationChannels\Netgsm\Events;
 
-use BahriCanli\netgsm\ShortMessageCollection;
-use BahriCanli\netgsm\Http\Responses\netgsmResponseInterface;
+use BahriCanli\Netgsm\ShortMessageCollection;
+use BahriCanli\Netgsm\Http\Responses\NetgsmResponseInterface;
 
 /**
  * Class MessagesWereSent.
@@ -20,7 +20,7 @@ class MessagesWereSent
     /**
      * The Api response implementation.
      *
-     * @var netgsmResponseInterface
+     * @var NetgsmResponseInterface
      */
     public $response;
 
@@ -28,9 +28,9 @@ class MessagesWereSent
      * MessageWasSent constructor.
      *
      * @param ShortMessageCollection  $messages
-     * @param netgsmResponseInterface $response
+     * @param NetgsmResponseInterface $response
      */
-    public function __construct(ShortMessageCollection $messages, netgsmResponseInterface $response)
+    public function __construct(ShortMessageCollection $messages, NetgsmResponseInterface $response)
     {
         $this->messages = $messages;
         $this->response = $response;

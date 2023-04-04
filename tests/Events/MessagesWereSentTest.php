@@ -3,9 +3,9 @@
 namespace NotificationChannels\JetSMS\Test\Events;
 
 use Mockery as M;
-use BahriCanli\netgsm\ShortMessageCollection;
-use NotificationChannels\netgsm\Events\MessagesWereSent;
-use BahriCanli\netgsm\Http\Responses\netgsmResponseInterface;
+use BahriCanli\Netgsm\ShortMessageCollection;
+use NotificationChannels\Netgsm\Events\MessagesWereSent;
+use BahriCanli\Netgsm\Http\Responses\NetgsmResponseInterface;
 
 class MessagesWereSentTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,7 +24,7 @@ class MessagesWereSentTest extends \PHPUnit_Framework_TestCase
     public function test_it_constructs()
     {
         $shortMessageCollection = M::mock(ShortMessageCollection::class);
-        $response = M::mock(netgsmResponseInterface::class);
+        $response = M::mock(NetgsmResponseInterface::class);
 
         $event = new MessagesWereSent($shortMessageCollection, $response);
 

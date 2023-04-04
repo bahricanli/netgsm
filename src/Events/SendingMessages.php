@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\netgsm\Events;
+namespace NotificationChannels\Netgsm\Events;
 
-use BahriCanli\netgsm\ShortMessageCollection;
+use BahriCanli\Netgsm\ShortMessageCollection;
 
 /**
  * Class SendingMessages.
@@ -10,7 +10,7 @@ use BahriCanli\netgsm\ShortMessageCollection;
 class SendingMessages
 {
     /**
-     * The netgsm message.
+     * The Netgsm message.
      *
      * @var ShortMessageCollection
      */

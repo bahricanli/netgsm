@@ -1,30 +1,30 @@
 <?php
 
-namespace NotificationChannels\netgsm;
+namespace NotificationChannels\Netgsm;
 
-use BahriCanli\netgsm\ShortMessage;
+use BahriCanli\Netgsm\ShortMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\netgsm\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Netgsm\Exceptions\CouldNotSendNotification;
 
 /**
- * Class netgsmChannel.
+ * Class NetgsmChannel.
  */
-final class netgsmChannel
+final class NetgsmChannel
 {
     /**
      * Send the given notification.
      *
      * @param  mixed                                  $notifiable
      * @param  \Illuminate\Notifications\Notification $notification
-     * @throws \NotificationChannels\netgsm\Exceptions\CouldNotSendNotification
+     * @throws \NotificationChannels\Netgsm\Exceptions\CouldNotSendNotification
      * @return void
      */
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->tonetgsm($notifiable);
+        $message = $notification->toNetgsm($notifiable);
 
         if ($message instanceof ShortMessage) {
-            netgsm::sendShortMessage($message);
+            Netgsm::sendShortMessage($message);
 
             return;
         }
@@ -35,6 +35,6 @@ final class netgsmChannel
             throw CouldNotSendNotification::missingRecipient();
         }
 
-        netgsm::sendShortMessage($to, $message);
+        Netgsm::sendShortMessage($to, $message);
     }
 }

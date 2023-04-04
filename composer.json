@@ -1,7 +1,7 @@
 {
-    "name": "bahricanli/netgsm",
-    "description": "Sends SMS using netgsm API",
-    "homepage": "https://github.com/bahricanli/netgsm",
+    "name": "bahricanli/Netgsm",
+    "description": "Sends SMS using Netgsm API",
+    "homepage": "https://github.com/bahricanli/Netgsm",
     "version": "1.1.0",
     "type": "library",
     "license": "MIT",
@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": ">=7",
-        "bahricanli/netgsm-php": "^1.1",
+        "bahricanli/Netgsm-php": "^1.1",
         "illuminate/notifications": "8.*",
         "illuminate/queue": "8.*",
         "illuminate/support": "8.*"
@@ -32,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\netgsm\\": "src"
+            "NotificationChannels\\Netgsm\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\netgsm\\Test\\": "tests"
+            "NotificationChannels\\Netgsm\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -49,7 +49,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:bahricanli/netgsm-php.git"
+            "url": "git@github.com:bahricanli/Netgsm-php.git"
         }
     ]
 }

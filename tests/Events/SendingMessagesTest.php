@@ -3,8 +3,8 @@
 namespace NotificationChannels\JetSMS\Test\Events;
 
 use Mockery as M;
-use BahriCanli\netgsm\ShortMessageCollection;
-use NotificationChannels\netgsm\Events\SendingMessages;
+use BahriCanli\Netgsm\ShortMessageCollection;
+use NotificationChannels\Netgsm\Events\SendingMessages;
 
 class SendingMessagesTest extends \PHPUnit_Framework_TestCase
 {

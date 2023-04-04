@@ -1,24 +1,24 @@
 <?php
 
-namespace NotificationChannels\netgsm\Test;
+namespace NotificationChannels\Netgsm\Test;
 
 use Exception;
 use Mockery as M;
-use NotificationChannels\netgsm\netgsm;
+use NotificationChannels\Netgsm\Netgsm;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\netgsm\netgsmChannel;
-use BahriCanli\netgsm\Http\Responses\netgsmResponseInterface;
-use NotificationChannels\netgsm\Exceptions\CouldNotSendNotification;
+use NotificationChannels\Netgsm\NetgsmChannel;
+use BahriCanli\Netgsm\Http\Responses\NetgsmResponseInterface;
+use NotificationChannels\Netgsm\Exceptions\CouldNotSendNotification;
 
-class netgsmChannelTest extends \PHPUnit_Framework_TestCase
+class NetgsmChannelTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var netgsmChannel
+     * @var NetgsmChannel
      */
     private $channel;
 
     /**
-     * @var netgsmResponseInterface
+     * @var NetgsmResponseInterface
      */
     private $responseInterface;
 
@@ -26,8 +26,8 @@ class netgsmChannelTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->channel = new netgsmChannel();
-        $this->responseInterface = M::mock(netgsmResponseInterface::class);
+        $this->channel = new NetgsmChannel();
+        $this->responseInterface = M::mock(NetgsmResponseInterface::class);
     }
 
     public function tearDown()
@@ -37,7 +37,7 @@ class netgsmChannelTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_sends_notification()
     {
-        netgsm::shouldReceive('sendShortMessage')
+        Netgsm::shouldReceive('sendShortMessage')
             ->once()
             ->with('+1234567890', 'foo')
             ->andReturn($this->responseInterface);
@@ -70,10 +70,10 @@ class TestNotification extends Notification
 {
     public function via($notifiable)
     {
-        return [netgsmChannel::class];
+        return [NetgsmChannel::class];
     }
 
-    public function tonetgsm($notifiable)
+    public function toNetgsm($notifiable)
     {
         return 'foo';
     }

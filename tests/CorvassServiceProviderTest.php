@@ -1,13 +1,13 @@
 <?php
 
-namespace NotificationChannels\netgsm\Test;
+namespace NotificationChannels\Netgsm\Test;
 
 use Mockery as M;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Container\ContextualBindingBuilder;
-use NotificationChannels\netgsm\netgsmServiceProvider;
+use NotificationChannels\Netgsm\NetgsmServiceProvider;
 
-class netgsmServiceProviderTest extends \PHPUnit_Framework_TestCase
+class NetgsmServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
     private $app;
     private $contextualBindingBuilder;
@@ -36,7 +36,7 @@ class netgsmServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->app->shouldReceive('singleton')
             ->once();
 
-        $provider = new netgsmServiceProvider($this->app);
+        $provider = new NetgsmServiceProvider($this->app);
 
         $provider->boot();
     }
