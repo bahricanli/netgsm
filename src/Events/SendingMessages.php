@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\Corvass\Events;
+namespace NotificationChannels\netgsm\Events;
 
-use BahriCanli\Corvass\ShortMessageCollection;
+use BahriCanli\netgsm\ShortMessageCollection;
 
 /**
  * Class SendingMessages.
@@ -10,7 +10,7 @@ use BahriCanli\Corvass\ShortMessageCollection;
 class SendingMessages
 {
     /**
-     * The Corvass message.
+     * The netgsm message.
      *
      * @var ShortMessageCollection
      */

@@ -1,40 +1,40 @@
 <?php
 
-namespace NotificationChannels\Corvass;
+namespace NotificationChannels\netgsm;
 
-use BahriCanli\Corvass\ShortMessage;
+use BahriCanli\netgsm\ShortMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Corvass\Exceptions\CouldNotSendNotification;
+use NotificationChannels\netgsm\Exceptions\CouldNotSendNotification;
 
 /**
- * Class CorvassChannel.
+ * Class netgsmChannel.
  */
-final class CorvassChannel
+final class netgsmChannel
 {
     /**
      * Send the given notification.
      *
      * @param  mixed                                  $notifiable
      * @param  \Illuminate\Notifications\Notification $notification
-     * @throws \NotificationChannels\Corvass\Exceptions\CouldNotSendNotification
+     * @throws \NotificationChannels\netgsm\Exceptions\CouldNotSendNotification
      * @return void
      */
     public function send($notifiable, Notification $notification)
     {
-        $message = $notification->toCorvass($notifiable);
+        $message = $notification->tonetgsm($notifiable);
 
         if ($message instanceof ShortMessage) {
-            Corvass::sendShortMessage($message);
+            netgsm::sendShortMessage($message);
 
             return;
         }
 
-        $to = $notifiable->routeNotificationFor('Corvass');
+        $to = $notifiable->routeNotificationFor('netgsm');
 
         if (empty($to)) {
             throw CouldNotSendNotification::missingRecipient();
         }
 
-        Corvass::sendShortMessage($to, $message);
+        netgsm::sendShortMessage($to, $message);
     }
 }

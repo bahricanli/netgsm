@@ -1,13 +1,13 @@
 <?php
 
-namespace NotificationChannels\Corvass\Test;
+namespace NotificationChannels\netgsm\Test;
 
 use Mockery as M;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Container\ContextualBindingBuilder;
-use NotificationChannels\Corvass\CorvassServiceProvider;
+use NotificationChannels\netgsm\netgsmServiceProvider;
 
-class CorvassServiceProviderTest extends \PHPUnit_Framework_TestCase
+class netgsmServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
     private $app;
     private $contextualBindingBuilder;
@@ -36,7 +36,7 @@ class CorvassServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->app->shouldReceive('singleton')
             ->once();
 
-        $provider = new CorvassServiceProvider($this->app);
+        $provider = new netgsmServiceProvider($this->app);
 
         $provider->boot();
     }

@@ -1,17 +1,17 @@
 <?php
 
-namespace NotificationChannels\Corvass;
+namespace NotificationChannels\netgsm;
 
 use Illuminate\Support\Facades\Facade;
-use BahriCanli\Corvass\Http\Responses\CorvassResponseInterface;
+use BahriCanli\netgsm\Http\Responses\netgsmResponseInterface;
 
 /**
- * Class Corvass.
+ * Class netgsm.
  *
- * @method static CorvassResponseInterface sendShortMessage(array|string $receivers, string|null $body = null)
- * @method static CorvassResponseInterface sendShortMessages(array $messages)
+ * @method static netgsmResponseInterface sendShortMessage(array|string $receivers, string|null $body = null)
+ * @method static netgsmResponseInterface sendShortMessages(array $messages)
  */
-class Corvass extends Facade
+class netgsm extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -20,6 +20,6 @@ class Corvass extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'corvass-sms';
+        return 'netgsm-sms';
     }
 }

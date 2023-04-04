@@ -1,22 +1,22 @@
 <?php
 
-namespace NotificationChannels\Corvass;
+namespace NotificationChannels\netgsm;
 
 use GuzzleHttp\Client;
 use UnexpectedValueException;
-use BahriCanli\Corvass\Http\Clients;
-use BahriCanli\Corvass\ShortMessage;
-use BahriCanli\Corvass\CorvassService;
+use BahriCanli\netgsm\Http\Clients;
+use BahriCanli\netgsm\ShortMessage;
+use BahriCanli\netgsm\netgsmService;
 use Illuminate\Support\ServiceProvider;
-use BahriCanli\Corvass\ShortMessageFactory;
-use BahriCanli\Corvass\ShortMessageCollection;
-use BahriCanli\Corvass\ShortMessageCollectionFactory;
-use BahriCanli\Corvass\Http\Responses\CorvassResponseInterface;
+use BahriCanli\netgsm\ShortMessageFactory;
+use BahriCanli\netgsm\ShortMessageCollection;
+use BahriCanli\netgsm\ShortMessageCollectionFactory;
+use BahriCanli\netgsm\Http\Responses\netgsmResponseInterface;
 
 /**
- * Class CorvassServiceProvider.
+ * Class netgsmServiceProvider.
  */
-class CorvassServiceProvider extends ServiceProvider
+class netgsmServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -30,36 +30,36 @@ class CorvassServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerCorvassClient();
-        $this->registerCorvassService();
+        $this->registernetgsmClient();
+        $this->registernetgsmService();
     }
 
     /**
-     * Register the Corvass Client binding with the container.
+     * Register the netgsm Client binding with the container.
      *
      * @return void
      */
-    private function registerCorvassClient()
+    private function registernetgsmClient()
     {
-        $this->app->bind(Clients\CorvassClientInterface::class, function () {
+        $this->app->bind(Clients\netgsmClientInterface::class, function () {
             $client = null;
-            $username = config('services.Corvass.username');
-            $password = config('services.Corvass.password');
-            $originator = config('services.Corvass.originator');
+            $username = config('services.netgsm.username');
+            $password = config('services.netgsm.password');
+            $originator = config('services.netgsm.originator');
 
-            switch (config('services.Corvass.client', 'http')) {
+            switch (config('services.netgsm.client', 'http')) {
                 case 'http':
-                    $timeout = config('services.Corvass.timeout');
-                    $endpoint = config('services.Corvass.http.endpoint');
-                    $client = new Clients\CorvassHttpClient(
+                    $timeout = config('services.netgsm.timeout');
+                    $endpoint = config('services.netgsm.http.endpoint');
+                    $client = new Clients\netgsmHttpClient(
                         new Client(['timeout' => $timeout]), $endpoint, $username, $password, $originator);
                     break;
                 case 'xml':
-                    $endpoint = config('services.Corvass.xml.endpoint');
-                    $client = new Clients\CorvassXmlClient($endpoint, $username, $password, $originator);
+                    $endpoint = config('services.netgsm.xml.endpoint');
+                    $client = new Clients\netgsmXmlClient($endpoint, $username, $password, $originator);
                     break;
                 default:
-                    throw new UnexpectedValueException('Unknown Corvass API client has been provided.');
+                    throw new UnexpectedValueException('Unknown netgsm API client has been provided.');
             }
 
             return $client;
@@ -67,15 +67,15 @@ class CorvassServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the corvass-sms service.
+     * Register the netgsm-sms service.
      */
-    private function registerCorvassService()
+    private function registernetgsmService()
     {
         $beforeSingle = function (ShortMessage $shortMessage) {
             event(new Events\SendingMessage($shortMessage));
         };
 
-        $afterSingle = function (CorvassResponseInterface $response, ShortMessage $shortMessage) {
+        $afterSingle = function (netgsmResponseInterface $response, ShortMessage $shortMessage) {
             event(new Events\MessageWasSent($shortMessage, $response));
         };
 
@@ -83,13 +83,13 @@ class CorvassServiceProvider extends ServiceProvider
             event(new Events\SendingMessages($shortMessages));
         };
 
-        $afterMany = function (CorvassResponseInterface $response, ShortMessageCollection $shortMessages) {
+        $afterMany = function (netgsmResponseInterface $response, ShortMessageCollection $shortMessages) {
             event(new Events\MessagesWereSent($shortMessages, $response));
         };
 
-        $this->app->singleton('corvass-sms', function ($app) use ($beforeSingle, $afterSingle, $beforeMany, $afterMany) {
-            return new CorvassService(
-                $app->make(Clients\CorvassClientInterface::class),
+        $this->app->singleton('netgsm-sms', function ($app) use ($beforeSingle, $afterSingle, $beforeMany, $afterMany) {
+            return new netgsmService(
+                $app->make(Clients\netgsmClientInterface::class),
                 new ShortMessageFactory(),
                 new ShortMessageCollectionFactory(),
                 $beforeSingle,
@@ -108,8 +108,8 @@ class CorvassServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'corvass-sms',
-            Clients\CorvassClientInterface::class,
+            'netgsm-sms',
+            Clients\netgsmClientInterface::class,
         ];
     }
 }

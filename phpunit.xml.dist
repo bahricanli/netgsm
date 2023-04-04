@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Corvass Test Suite">
+        <testsuite name="netgsm Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
@@ -18,7 +18,7 @@
         <whitelist>
             <directory suffix=".php">src/</directory>
             <exclude>
-                <file>src/CorvassServiceProvider.php</file>
+                <file>src/netgsmServiceProvider.php</file>
             </exclude>
         </whitelist>
     </filter>

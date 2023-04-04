@@ -1,24 +1,24 @@
 <?php
 
-namespace NotificationChannels\Corvass\Test;
+namespace NotificationChannels\netgsm\Test;
 
 use Exception;
 use Mockery as M;
-use NotificationChannels\Corvass\Corvass;
+use NotificationChannels\netgsm\netgsm;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Corvass\CorvassChannel;
-use BahriCanli\Corvass\Http\Responses\CorvassResponseInterface;
-use NotificationChannels\Corvass\Exceptions\CouldNotSendNotification;
+use NotificationChannels\netgsm\netgsmChannel;
+use BahriCanli\netgsm\Http\Responses\netgsmResponseInterface;
+use NotificationChannels\netgsm\Exceptions\CouldNotSendNotification;
 
-class CorvassChannelTest extends \PHPUnit_Framework_TestCase
+class netgsmChannelTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var CorvassChannel
+     * @var netgsmChannel
      */
     private $channel;
 
     /**
-     * @var CorvassResponseInterface
+     * @var netgsmResponseInterface
      */
     private $responseInterface;
 
@@ -26,8 +26,8 @@ class CorvassChannelTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->channel = new CorvassChannel();
-        $this->responseInterface = M::mock(CorvassResponseInterface::class);
+        $this->channel = new netgsmChannel();
+        $this->responseInterface = M::mock(netgsmResponseInterface::class);
     }
 
     public function tearDown()
@@ -37,7 +37,7 @@ class CorvassChannelTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_sends_notification()
     {
-        Corvass::shouldReceive('sendShortMessage')
+        netgsm::shouldReceive('sendShortMessage')
             ->once()
             ->with('+1234567890', 'foo')
             ->andReturn($this->responseInterface);
@@ -70,10 +70,10 @@ class TestNotification extends Notification
 {
     public function via($notifiable)
     {
-        return [CorvassChannel::class];
+        return [netgsmChannel::class];
     }
 
-    public function toCorvass($notifiable)
+    public function tonetgsm($notifiable)
     {
         return 'foo';
     }

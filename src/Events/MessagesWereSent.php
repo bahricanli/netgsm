@@ -1,9 +1,9 @@
 <?php
 
-namespace NotificationChannels\Corvass\Events;
+namespace NotificationChannels\netgsm\Events;
 
-use BahriCanli\Corvass\ShortMessageCollection;
-use BahriCanli\Corvass\Http\Responses\CorvassResponseInterface;
+use BahriCanli\netgsm\ShortMessageCollection;
+use BahriCanli\netgsm\Http\Responses\netgsmResponseInterface;
 
 /**
  * Class MessagesWereSent.
@@ -20,7 +20,7 @@ class MessagesWereSent
     /**
      * The Api response implementation.
      *
-     * @var CorvassResponseInterface
+     * @var netgsmResponseInterface
      */
     public $response;
 
@@ -28,9 +28,9 @@ class MessagesWereSent
      * MessageWasSent constructor.
      *
      * @param ShortMessageCollection  $messages
-     * @param CorvassResponseInterface $response
+     * @param netgsmResponseInterface $response
      */
-    public function __construct(ShortMessageCollection $messages, CorvassResponseInterface $response)
+    public function __construct(ShortMessageCollection $messages, netgsmResponseInterface $response)
     {
         $this->messages = $messages;
         $this->response = $response;

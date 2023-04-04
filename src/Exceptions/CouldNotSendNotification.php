@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Corvass\Exceptions;
+namespace NotificationChannels\netgsm\Exceptions;
 
 /**
  * Class CouldNotSendNotification.
